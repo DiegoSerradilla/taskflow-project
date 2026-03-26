@@ -71,4 +71,9 @@ section p:hover {
     transform: scale(1.02);
     background-color: #abe3e7;
 }
+.completada {
+    text-decoration: line-through;
+    opacity : 0.8;
+    background-color: green;
 
+}

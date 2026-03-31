@@ -74,6 +74,6 @@ section p:hover {
 .completada {
     text-decoration: line-through;
     opacity : 0.8;
-    background-color: green;
+    background-color: rgb(63, 189, 63);
 
 }

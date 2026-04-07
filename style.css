@@ -2,7 +2,7 @@
 body {
     background-color: #d1ddee;
     margin: 0;
-    font-family: arial, sans sans-serif;
+    font-family: Arial, sans-serif;
 }
     header {
         background-color: #1451a7;
@@ -58,11 +58,11 @@ section p {
     background-color: white;
     border-radius: 5px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: 0.8s;
 }
 aside button:hover {
-    background-color: 1abc9c;
+    background-color: #1abc9c;
     cursor: pointer;
     transform: scale(1.02);
 
@@ -76,4 +76,20 @@ section p:hover {
     opacity : 0.8;
     background-color: rgb(63, 189, 63);
 
+}
+.tarea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.tarea button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+    cursor: pointer;
 }

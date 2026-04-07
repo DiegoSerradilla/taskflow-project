@@ -1,5 +1,6 @@
 //1. VARIABLES
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+let filtro = "todas";
 
 
 const boton = document.getElementById("addBtn");
@@ -12,8 +13,15 @@ const listaTareas = document.getElementById("listaTareas");
         listaTareas.innerHTML = "";
 
         for (let i = 0 ; i < tareas.length; i++) {
+            
+            if (filtro === "completadas" && !tareas[i].completada) {
+            continue;
+        }
+            if (filtro === "pendientes" && tareas[i].completada) {
+             continue;
+        }
             const contenedorTarea = document.createElement("div");
-
+            contenedorTarea.classList.add("tarea");
 
             const nuevaTarea = document.createElement("p");
             nuevaTarea.textContent = tareas[i].texto;
@@ -48,8 +56,8 @@ const listaTareas = document.getElementById("listaTareas");
 boton.addEventListener("click", function() {
     const texto = input.value;
     
-    if (texto === "")  {
-        return;
+    if (texto.trim() === "") {
+    return;
     }
 
     tareas.push({
@@ -61,6 +69,20 @@ boton.addEventListener("click", function() {
     input.value = "";
     pintarTareas();
 
+    document.getElementById("btnTodas").addEventListener("click", function () {
+    filtro = "todas";
+    pintarTareas();
+});
+
+document.getElementById("btnPendientes").addEventListener("click", function () {
+    filtro = "pendientes";
+    pintarTareas();
+});
+
+document.getElementById("btnCompletadas").addEventListener("click", function () {
+    filtro = "completadas";
+    pintarTareas();
 });
 
 pintarTareas();
+});

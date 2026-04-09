@@ -1,11 +1,15 @@
 //1. VARIABLES
 let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 let filtro = "todas";
+let busqueda = "";
+
 
 
 const boton = document.getElementById("addBtn");
 const input = document.getElementById("taskInput");
 const listaTareas = document.getElementById("listaTareas");
+const estadisticas = document.getElementById("estadisticas");
+const busquedaInput = document.getElementById("busquedaInput");
 
 
 //2.FUNCIONES
@@ -20,6 +24,10 @@ const listaTareas = document.getElementById("listaTareas");
             if (filtro === "pendientes" && tareas[i].completada) {
              continue;
         }
+        if (!tareas[i].texto.toLowerCase().includes(busqueda.toLowerCase())) {
+        continue;
+        }
+
             const contenedorTarea = document.createElement("div");
             contenedorTarea.classList.add("tarea");
 
@@ -49,8 +57,26 @@ const listaTareas = document.getElementById("listaTareas");
             contenedorTarea.appendChild(nuevaTarea); //metemos el p, que es nueva tarea dentro de contenedorTareas(div)
             contenedorTarea.appendChild(botonBorrar); //metemos el boton dentro del div
             listaTareas.appendChild(contenedorTarea); //metemos contenedortareas(div) dentro de la pagina
+            pintarEstadisticas();
         
  }
+        function pintarEstadisticas() {
+    let completadas = 0;
+
+    for (let i = 0; i < tareas.length; i++) {
+        if (tareas[i].completada) {
+            completadas++;
+        }
+    }
+
+    let pendientes = tareas.length - completadas;
+
+    estadisticas.innerHTML = `
+        <p>Total: ${tareas.length}</p>
+        <p>Completadas: ${completadas}</p>
+        <p>Pendientes: ${pendientes}</p>
+    `;
+}
  } 
 //3.EVENTOS
 boton.addEventListener("click", function() {
@@ -84,5 +110,20 @@ document.getElementById("btnCompletadas").addEventListener("click", function () 
     pintarTareas();
 });
 
+document.getElementById("btnCompletarTodas").addEventListener("click", function () {
+    for (let i = 0; i < tareas.length; i++) {
+        tareas[i].completada = true;
+    }
+
+    localStorage.setItem("tareas", JSON.stringify(tareas));
+    pintarTareas();
+});
+
+busquedaInput.addEventListener("input", function () {
+    busqueda = busquedaInput.value;
+    pintarTareas();
+});
+
+localStorage.setItem("tareas", JSON.stringify(tareas));
 pintarTareas();
 });

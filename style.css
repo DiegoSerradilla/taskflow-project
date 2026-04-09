@@ -93,3 +93,31 @@ section p:hover {
     color: white;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        border-right: none;
+    }
+
+    section {
+        width: 100%;
+        padding: 10px;
+    }
+
+    div:has(#taskInput) {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #taskInput,
+    #addBtn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

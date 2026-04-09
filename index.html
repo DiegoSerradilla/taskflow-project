@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Taskflow</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="fondo">
+        <header class="header">
+            <div class="logo">TaskFlow</div>
+            <p class="subtitulo">Organiza tu día de forma simple y visual</p>
+        </header>
 
-    <body>
-        <header>Taskflow</header>
+        <main class="layout">
+            <aside class="sidebar">
+                <h2 class="menu-titulo">Panel</h2>
 
-        <main>
-
-            <aside>
                 <button id="btnTodas">Inicio</button>
-                <button id="btnPendientes">Tareas</button>
+                <button id="btnPendientes">Pendientes</button>
                 <button id="btnCompletadas">Completadas</button>
                 <button id="btnCompletarTodas">Completar todas</button>
+                <button id="btnBorrarCompletadas">Borrar completadas</button>
+                <button id="modoOscuroBtn">Modo oscuro</button>
             </aside>
 
-            <section>
+            <section class="contenido">
+                <div class="bloque-superior">
+                    <div class="formulario-card">
+                        <h2>Nueva tarea</h2>
 
-            <div>
-                <input type="text" id="taskInput">
-                <button id="addBtn">Añadir</button>
-                <input type="text" id="busquedaInput" placeholder="Buscar tarea">
-            </div>
+                        <div class="formulario">
+                            <input type="text" id="taskInput" placeholder="Escribe una tarea">
+                            <button id="addBtn">Añadir</button>
+                        </div>
 
-            <div id="listaTareas"></div>
-            <div id="estadisticas"></div>
+                        <input type="text" id="busquedaInput" placeholder="Buscar tarea...">
+                    </div>
+                </div>
 
+                <div id="listaTareas" class="lista-tareas"></div>
+
+                <div id="estadisticas" class="estadisticas"></div>
             </section>
-
         </main>
+    </div>
 
     <script src="script.js"></script>
-    
-    </body>
-
-    </html>
+</body>
+</html>

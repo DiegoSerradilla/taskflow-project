@@ -71,8 +71,8 @@ function pintarTareas() {
 });
 
         if (tareas[i].completada) {
-            nuevaTarea.classList.add("completada");
-        }
+        contenedorTarea.classList.add("completada");
+}
 
         nuevaTarea.addEventListener("click", function () {
             tareas[i].completada = !tareas[i].completada;
@@ -132,6 +132,7 @@ document.getElementById("btnCompletadas").addEventListener("click", function () 
 });
 
 document.getElementById("btnCompletarTodas").addEventListener("click", function () {
+
     for (let i = 0; i < tareas.length; i++) {
         tareas[i].completada = true;
     }
@@ -140,14 +141,10 @@ document.getElementById("btnCompletarTodas").addEventListener("click", function 
     pintarTareas();
 });
 
-document.getElementById("btnCompletarTodas").addEventListener("click", function () {
-    let todasCompletadas = tareas.every(function (tarea) {
-        return tarea.completada;
+document.getElementById("btnBorrarCompletadas").addEventListener("click", function () {
+    tareas = tareas.filter(function (tarea) {
+        return !tarea.completada;
     });
-
-    for (let i = 0; i < tareas.length; i++) {
-        tareas[i].completada = !todasCompletadas;
-    }
 
     localStorage.setItem("tareas", JSON.stringify(tareas));
     pintarTareas();

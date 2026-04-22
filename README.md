@@ -24,3 +24,25 @@ Instalación y uso
 Clonar el repositorio:
 git clone https://github.com/DiegoSerradilla/taskflow-project.git
 Abrir el archivo index.html en el navegador
+
+Se ha añadido un backend con Node.js y Express para gestionar las tareas mediante una API REST.
+Las tareas se almacenan en memoria y se accede a ellas desde el frontend mediante peticiones fetch.
+
+Endpoints principales:
+
+GET → obtener tareas
+POST → crear tarea
+DELETE → eliminar tarea
+Actualización Fase 3 Backend
+
+Se ha conectado el frontend con un backend desarrollado en Node.js y Express mediante una API REST.
+
+Mejoras añadidas:
+- Carga de tareas desde servidor con método GET
+- Creación de tareas con método POST
+- Eliminación de tareas con método DELETE
+- Cambio de estado completada con método PATCH
+- Separación de la capa de red en `api/client.js`
+- Eliminación progresiva de lógica directa fetch en `script.js`
+- Gestión visual de estados de carga y error
+- Estructura más profesional entre frontend y backend

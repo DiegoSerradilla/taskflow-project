@@ -1,5 +1,5 @@
 // 1. VARIABLES
-let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+let tareas = [];
 let filtro = "todas";
 let busqueda = "";
 
@@ -8,6 +8,7 @@ const input = document.getElementById("taskInput");
 const listaTareas = document.getElementById("listaTareas");
 const estadisticas = document.getElementById("estadisticas");
 const busquedaInput = document.getElementById("busquedaInput");
+const mensajeEstado = document.getElementById("mensajeEstado");
 
 // 2. FUNCIONES
 function pintarEstadisticas() {
@@ -74,20 +75,22 @@ function pintarTareas() {
         contenedorTarea.classList.add("completada");
 }
 
-        nuevaTarea.addEventListener("click", function () {
-            tareas[i].completada = !tareas[i].completada;
-            localStorage.setItem("tareas", JSON.stringify(tareas));
-            pintarTareas();
+        nuevaTarea.addEventListener("click", async function () {
+        
+        await completarTarea(tareas[i].id);
+
+        cargarTareas();
         });
 
         const botonBorrar = document.createElement("button");
         botonBorrar.textContent = "Borrar";
 
-        botonBorrar.addEventListener("click", function (event) {
-            event.stopPropagation();
-            tareas.splice(i, 1);
-            localStorage.setItem("tareas", JSON.stringify(tareas));
-            pintarTareas();
+        botonBorrar.addEventListener("click", async function (event) {
+         event.stopPropagation();
+
+        await borrarTarea(tareas[i].id);
+        
+         cargarTareas();
         });
 
         contenedorTarea.appendChild(nuevaTarea);
@@ -98,22 +101,36 @@ function pintarTareas() {
     pintarEstadisticas();
 }
 
-// 3. EVENTOS
-boton.addEventListener("click", function () {
-    const texto = input.value;
+    async function cargarTareas() {
 
-    if (texto.trim() === "") {
+    mensajeEstado.textContent = "Cargando tareas...";
+
+    try {
+        tareas = await obtenerTareas();
+
+        mensajeEstado.textContent = "";
+
+        pintarTareas();
+
+    } catch (error) {
+
+        mensajeEstado.textContent = "Error al cargar tareas";
+
+        console.error("Error cargando tareas:", error);
+    }
+}
+
+// 3. EVENTOS
+boton.addEventListener("click", async function () {
+    const texto = input.value.trim();
+
+    if (texto === "") {
         return;
     }
+    await crearTarea(texto);
 
-    tareas.push({
-        texto: texto,
-        completada: false
-    });
-
-    localStorage.setItem("tareas", JSON.stringify(tareas));
     input.value = "";
-    pintarTareas();
+    cargarTareas();
 });
 
 document.getElementById("btnTodas").addEventListener("click", function () {
@@ -174,4 +191,4 @@ modoOscuroBtn.addEventListener("click", function () {
     }
 });
 
-pintarTareas();
+cargarTareas();

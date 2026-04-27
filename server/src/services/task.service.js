@@ -25,17 +25,22 @@ const eliminarTarea = (id) => {
 
     tasks.splice(index, 1);
 };
-const actualizarTarea = (id) => {                  // Creamos función para actualizar una tarea usando su id
 
-    const tarea = tasks.find(t => t.id === id);    // Busca dentro del array la tarea que tenga ese id
+const actualizarTarea = (id, data) => {
 
-    if (!tarea) {                                  // Si no encuentra ninguna tarea...
-        throw new Error("NOT_FOUND");              // Lanzamos error de tarea no encontrada
+    const tarea = tasks.find(t => t.id === id);
+
+    if (!tarea) {
+        throw new Error("NOT_FOUND");
     }
 
-    tarea.completada = !tarea.completada;          
-   
-    return tarea;                                
+    if (data && data.texto) {
+        tarea.texto = data.texto;
+    } else {
+        tarea.completada = !tarea.completada;
+    }
+
+    return tarea;
 };
 
 

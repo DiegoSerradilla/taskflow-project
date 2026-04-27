@@ -35,7 +35,7 @@ const actualizarTarea = (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
 
-        const tareaActualizada = taskService.actualizarTarea(id);
+        const tareaActualizada = taskService.actualizarTarea(id, req.body);
 
         res.json(tareaActualizada);
 

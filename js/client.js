@@ -43,3 +43,9 @@ async function editarTarea(id, texto) {
         })
     });
 }
+
+window.obtenerTareas = obtenerTareas;
+window.crearTarea = crearTarea;
+window.borrarTarea = borrarTarea;
+window.completarTarea = completarTarea;
+window.editarTarea = editarTarea;

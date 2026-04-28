@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/api/v1/tasks";
+const URL = "https://taskflow-backend-wjki.onrender.com/api/v1/tasks";
 
 async function obtenerTareas() {
     const respuesta = await fetch(URL);
@@ -29,5 +29,17 @@ async function borrarTarea(id) {
 async function completarTarea(id) {
     await fetch(URL + "/" + id, {
         method: "PATCH"
+    });
+}
+
+async function editarTarea(id, texto) {
+    await fetch(URL + "/" + id, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            texto: texto
+        })
     });
 }

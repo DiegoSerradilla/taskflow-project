@@ -61,14 +61,13 @@ function pintarTareas() {
 
         const nuevaTarea = document.createElement("p");
         nuevaTarea.textContent = tareas[i].texto;
-        nuevaTarea.addEventListener("dblclick", function () {
+        nuevaTarea.addEventListener("dblclick", async function () {
          const nuevoTexto = prompt("Editar tarea:", tareas[i].texto);
 
         if (nuevoTexto !== null && nuevoTexto.trim() !== "") {
-        tareas[i].texto = nuevoTexto;
-        localStorage.setItem("tareas", JSON.stringify(tareas));
-        pintarTareas();
-    }
+         await editarTarea(tareas[i].id, nuevoTexto);
+         cargarTareas();
+}
 });
 
         if (tareas[i].completada) {
@@ -148,23 +147,26 @@ document.getElementById("btnCompletadas").addEventListener("click", function () 
     pintarTareas();
 });
 
-document.getElementById("btnCompletarTodas").addEventListener("click", function () {
+document.getElementById("btnCompletarTodas").addEventListener("click", async function () {
 
     for (let i = 0; i < tareas.length; i++) {
-        tareas[i].completada = true;
+        if (!tareas[i].completada) {
+            await completarTarea(tareas[i].id);
+        }
     }
 
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-    pintarTareas();
+    cargarTareas();
 });
 
-document.getElementById("btnBorrarCompletadas").addEventListener("click", function () {
-    tareas = tareas.filter(function (tarea) {
-        return !tarea.completada;
-    });
+document.getElementById("btnBorrarCompletadas").addEventListener("click", async function () {
 
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-    pintarTareas();
+    for (let i = 0; i < tareas.length; i++) {
+        if (tareas[i].completada) {
+            await borrarTarea(tareas[i].id);
+        }
+    }
+
+    cargarTareas();
 });
 
 busquedaInput.addEventListener("input", function () {

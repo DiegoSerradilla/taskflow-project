@@ -12,8 +12,10 @@ Botón para completar todas las tareas
 Botón para eliminar tareas completadas
 Estadísticas (total, completadas y pendientes)
 Modo claro y modo oscuro
-Persistencia de datos mediante LocalStorage
+Persistencia de tareas mediante backend Node.js en memoria
 Diseño responsive para móvil y escritorio
+Editar tareas
+
 Tecnologías utilizadas
 HTML5
 CSS3
@@ -23,7 +25,19 @@ Git y GitHub
 Instalación y uso
 Clonar el repositorio:
 git clone https://github.com/DiegoSerradilla/taskflow-project.git
-Abrir el archivo index.html en el navegador
+Node.js
+Express
+Fetch API
+
+
+Frontend:
+Abrir index.html con Live Server
+
+Backend:
+Entrar en la carpeta server y ejecutar:
+
+npm install
+npm run dev
 
 Se ha añadido un backend con Node.js y Express para gestionar las tareas mediante una API REST.
 Las tareas se almacenan en memoria y se accede a ellas desde el frontend mediante peticiones fetch.
@@ -32,6 +46,7 @@ Endpoints principales:
 
 GET → obtener tareas
 POST → crear tarea
+PATCH → editar/completar tarea
 DELETE → eliminar tarea
 Actualización Fase 3 Backend
 
@@ -46,3 +61,5 @@ Mejoras añadidas:
 - Eliminación progresiva de lógica directa fetch en `script.js`
 - Gestión visual de estados de carga y error
 - Estructura más profesional entre frontend y backend
+
+Arquitectura del backend separada en routes, controllers y services.

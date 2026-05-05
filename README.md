@@ -63,3 +63,8 @@ Mejoras añadidas:
 - Estructura más profesional entre frontend y backend
 
 Arquitectura del backend separada en routes, controllers y services.
+
+Módulo 2 preparado:
+- Estructura de proyecto definida
+- Análisis del modelado de datos
+- Preparación para implementación de interfaces y tipos avanzados

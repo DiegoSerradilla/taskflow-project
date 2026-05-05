@@ -102,10 +102,12 @@ function pintarTareas() {
 
     async function cargarTareas() {
 
-    mensajeEstado.textContent = "Cargando tareas...";
+    mensajeEstado.textContent = "Conectando con el servidor...";
 
     try {
-        tareas = await obtenerTareas();
+        const datos = await obtenerTareas();
+
+        tareas = datos;
 
         mensajeEstado.textContent = "";
 
@@ -113,9 +115,12 @@ function pintarTareas() {
 
     } catch (error) {
 
-        mensajeEstado.textContent = "Error al cargar tareas";
+        mensajeEstado.textContent = "El servidor está iniciándose, espera unos segundos...";
 
-        console.error("Error cargando tareas:", error);
+        console.warn("Servidor probablemente dormido:", error);
+
+        // Reintenta automáticamente después de 5 segundos
+        setTimeout(cargarTareas, 5000);
     }
 }
 

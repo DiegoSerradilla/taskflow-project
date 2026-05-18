@@ -68,3 +68,11 @@ Módulo 2 preparado:
 - Estructura de proyecto definida
 - Análisis del modelado de datos
 - Preparación para implementación de interfaces y tipos avanzados
+
+Módulo 2:
+- Creación de interfaces y modelos de datos
+- Uso de propiedades readonly y opcionales
+- Implementación de uniones discriminadas
+- Desarrollo de funciones tipadas
+- Uso de genéricos con RespuestaAPI<T>
+- Simulación de llamadas API con async/await
